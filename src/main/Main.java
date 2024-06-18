@@ -40,20 +40,21 @@ public class Main extends Application {
 			}
 		}
 		Label headingLabel = new Label("Cue Haven");
-		headingLabel.setStyle("-fx-font-size: 32px; -fx-font-weight: bolder;");
+		headingLabel.setStyle("-fx-font-size: 64px; -fx-font-weight: bolder;");
 
 		Region marginRegion = new Region();
-		marginRegion.setPrefHeight(100);
+		marginRegion.setPrefHeight(150);
 
 		StackPane headingPane = new StackPane();
 		headingPane.getChildren().addAll(marginRegion, headingLabel);
+		StackPane.setAlignment(headingLabel, Pos.BOTTOM_CENTER);
 
 		Label txLabel = new Label("Transactions");
 		txLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
 
 		BorderPane borderPane = new BorderPane();
 		borderPane.setTop(headingPane);
-		BorderPane.setAlignment(headingPane, Pos.CENTER);
+		BorderPane.setAlignment(headingPane, Pos.BOTTOM_CENTER);
 		borderPane.setCenter(gridPane);
 		borderPane.setBottom(txLabel);
 		BorderPane.setAlignment(txLabel, Pos.CENTER);
@@ -77,11 +78,11 @@ public class Main extends Application {
 	}
 
 	private StackPane createBox(String labelText) {
-		Rectangle rectangle = new Rectangle(200, 100);
+		Rectangle rectangle = new Rectangle(300, 150);
 		rectangle.setFill(Color.GREEN);
 		rectangle.setArcWidth(20);
 		rectangle.setArcHeight(20);
-
+		
 		Label label = new Label(labelText);
 		label.setStyle("-fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;");
 
