@@ -1,9 +1,11 @@
+package main;
 import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
@@ -61,7 +63,10 @@ public class Main extends Application {
 //		gridPane.setStyle("-fx-border-color: black; -fx-border-width: 0 1 1 0;"); // Right and bottom borders
 //		txLabel.setStyle("-fx-border-color: black; -fx-border-width: 1 0 0 0;"); // Top border only
 //		borderPane.setStyle("-fx-border-color: black; -fx-border-width: 1;"); // Full border around the entire BorderPane
+		Image icon = new Image("8ball.png");
+		stage.getIcons().add(icon);
 
+		System.out.println(getClass());
 		root = new StackPane();
 		root.getChildren().add(borderPane);
 
