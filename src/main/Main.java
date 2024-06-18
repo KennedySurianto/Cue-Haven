@@ -71,7 +71,7 @@ public class Main extends Application {
 		root = new StackPane();
 		root.getChildren().add(borderPane);
 
-		Scene scene = new Scene(root, 1000, 500);
+		Scene scene = new Scene(root, 1400, 700);
 		stage.setScene(scene);
 
 		stage.show();
@@ -102,10 +102,10 @@ public class Main extends Application {
 		stackPane.setOnMouseClicked(event -> {
 			if (rectangle.getFill() == Color.GREEN) {
 				rectangle.setFill(Color.RED);
-				showNotification("Table " + labelText + " opened!");
+				showNotification(labelText + " opened!");
 			} else {
 				rectangle.setFill(Color.GREEN);
-				showNotification("Table " + labelText + " closed!");
+				showNotification(labelText + " closed!");
 			}
 		});
 
@@ -114,7 +114,7 @@ public class Main extends Application {
 
 	private void showNotification(String message) {
 		Label notificationLabel = new Label(message);
-		notificationLabel.setStyle("-fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold;");
+		notificationLabel.setStyle("-fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;");
 
 		Rectangle overlay = new Rectangle(root.getWidth(), root.getHeight());
 		overlay.setFill(Color.rgb(0, 0, 0, 0.5));
