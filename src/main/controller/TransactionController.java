@@ -9,8 +9,14 @@ import main.model.Transaction;
 
 public class TransactionController {
 	
-
 	public static void addTransaction(Transaction transaction) {
+		try {
+			Class.forName("org.postgresql.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		String query = "INSERT INTO Transactions (transaction_date, customer_name, table_number, start_time, end_time) VALUES (?, ?, ?, ?, ?)";
 
 		try {
