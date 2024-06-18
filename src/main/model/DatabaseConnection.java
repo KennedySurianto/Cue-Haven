@@ -11,12 +11,6 @@ public class DatabaseConnection {
 	private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
 	
 	public static Connection getConnection() throws SQLException {
-		try {
-			Class.forName(DRIVER);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		return DriverManager.getConnection(URL, USERNAME, PASSWORD);
 	}
 }
