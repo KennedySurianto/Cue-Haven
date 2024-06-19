@@ -58,7 +58,7 @@ public class MainController {
 
 		Rectangle overlay = generateOverlay();
 
-		Rectangle confirmationBox = new Rectangle(200, 140);
+		Rectangle confirmationBox = new Rectangle(200, 110);
 		confirmationBox.setFill(Color.GREY);
 		confirmationBox.setArcHeight(20);
 		confirmationBox.setArcWidth(20);
