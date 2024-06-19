@@ -34,7 +34,7 @@ public class MainView {
 		}
 
 		// Setup Heading
-		headingLabel = new Label("Tables");
+		headingLabel = new Label("Pool Tables");
 		headingLabel.setStyle("-fx-font-size: 64px; -fx-font-weight: bolder;");
 		Region marginRegion = new Region();
 		marginRegion.setPrefHeight(150);
