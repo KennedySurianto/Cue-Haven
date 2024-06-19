@@ -14,7 +14,6 @@ public class MainView {
     private GridPane gridPane;
     private StackPane headingPane;
     private Label headingLabel;
-    private Label txLabel;
 
     public MainView() {
         view = new BorderPane();
@@ -43,16 +42,10 @@ public class MainView {
         headingPane.getChildren().addAll(marginRegion, headingLabel);
         StackPane.setAlignment(headingLabel, Pos.BOTTOM_CENTER);
 
-        // Setup Transaction Label
-        txLabel = new Label("Transactions");
-        txLabel.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
-
         // Setup BorderPane
         view.setTop(headingPane);
         BorderPane.setAlignment(headingPane, Pos.BOTTOM_CENTER);
         view.setCenter(gridPane);
-        view.setBottom(txLabel);
-        BorderPane.setAlignment(txLabel, Pos.CENTER);
         
     }
 

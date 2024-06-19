@@ -1,6 +1,7 @@
 "JRE System Library"/
 "Referenced Libraries"/
 bin/
+.env
 
 # Compiled class files
 *.class

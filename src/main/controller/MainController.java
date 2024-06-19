@@ -58,7 +58,7 @@ public class MainController {
 
 		Rectangle overlay = generateOverlay();
 
-		Rectangle confirmationBox = new Rectangle(300, 170);
+		Rectangle confirmationBox = new Rectangle(200, 140);
 		confirmationBox.setFill(Color.GREY);
 		confirmationBox.setArcHeight(20);
 		confirmationBox.setArcWidth(20);
@@ -66,14 +66,14 @@ public class MainController {
 		Button okButton = new Button("OK");
 		Button cancelButton = new Button("Cancel");
 		
-		HBox hbox = new HBox();
+		HBox hbox = new HBox(10);
 		hbox.setAlignment(Pos.CENTER);
 		hbox.setPadding(new Insets(10));
 		hbox.getChildren().addAll(cancelButton, okButton);
 
-		VBox vbox = new VBox();
+		VBox vbox = new VBox(10);
 		vbox.setAlignment(Pos.CENTER);
-		vbox.setPadding(new Insets(10));
+		vbox.setPadding(new Insets(20));
 		vbox.getChildren().addAll(confirmationLabel, hbox);
 
 		StackPane stackPane = new StackPane();

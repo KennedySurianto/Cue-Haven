@@ -3,13 +3,17 @@ package main.model;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import io.github.cdimascio.dotenv.Dotenv;
 
 public class DatabaseConnection {
-	private static final String URL = "jdbc:postgresql://localhost:5432/cuehaven";
-	private static final String USERNAME = "postgres";
-	private static final String PASSWORD = "password567*";
 	
 	public static Connection getConnection() throws SQLException {
+		Dotenv dotenv = Dotenv.configure().load();
+		
+		final String URL = dotenv.get("DB_URL");
+		final String USERNAME = dotenv.get("DB_USER");
+		final String PASSWORD = dotenv.get("DB_PASS");
+		
 		return DriverManager.getConnection(URL, USERNAME, PASSWORD);
 	}
 }
