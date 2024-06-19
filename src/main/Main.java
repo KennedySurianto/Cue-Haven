@@ -58,7 +58,7 @@ public class Main extends Application {
 		borderPane.setTop(createMenuBar());
 		borderPane.setCenter(root);
 		
-		return new Scene(borderPane, 1400, 700);
+		return new Scene(borderPane, 1200, 1000);
 	}
 	
 	private MenuBar createMenuBar() {

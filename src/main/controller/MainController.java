@@ -21,7 +21,7 @@ import main.model.TransactionWrapper;
 public class MainController {
 
 	public static StackPane createBox(String labelText) {
-		Rectangle rectangle = new Rectangle(300, 150);
+		Rectangle rectangle = new Rectangle(180, 300);
 		rectangle.setFill(Color.GREEN);
 		rectangle.setArcWidth(20);
 		rectangle.setArcHeight(20);
