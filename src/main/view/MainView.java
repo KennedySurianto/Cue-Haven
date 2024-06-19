@@ -53,6 +53,7 @@ public class MainView {
         view.setCenter(gridPane);
         view.setBottom(txLabel);
         BorderPane.setAlignment(txLabel, Pos.CENTER);
+        
     }
 
     public BorderPane getView() {

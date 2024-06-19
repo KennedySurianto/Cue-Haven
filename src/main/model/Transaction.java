@@ -2,6 +2,7 @@ package main.model;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 public class Transaction {
 	private Integer transactionId;

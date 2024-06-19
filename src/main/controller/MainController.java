@@ -16,9 +16,9 @@ import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import main.Main;
 import main.model.Transaction;
+import main.model.TransactionWrapper;
 
 public class MainController {
-	private static Transaction transaction;
 
 	public static StackPane createBox(String labelText) {
 		Rectangle rectangle = new Rectangle(300, 150);
@@ -38,25 +38,74 @@ public class MainController {
 
 		stackPane.setOnMouseExited(event -> stackPane.setStyle("-fx-cursor: default;"));
 
+		TransactionWrapper transactionWrapper = new TransactionWrapper();
 		stackPane.setOnMouseClicked(event -> {
 			if (rectangle.getFill() == Color.GREEN) {
-				showConfirmation("Open " + labelText + "?", labelText.replace("Table ", ""), rectangle);
+				showStartTransactionConfirmation(labelText, rectangle, transactionWrapper);
 			} else {
-				transaction.endTransaction(LocalTime.now());
-				
-				TransactionController.addTransaction(transaction);
-				transaction = null;
-				
-				rectangle.setFill(Color.GREEN);
-				
-				showNotification(labelText + " closed!");
+				showEndTransactionConfirmation(labelText, rectangle, transactionWrapper);
 			}
 		});
 
 		return stackPane;
 	}
 
-	private static void showConfirmation(String message, String tableNumber, Rectangle rectangle) {
+	private static void showEndTransactionConfirmation(String labelText, Rectangle rectangle,
+			TransactionWrapper transactionWrapper) {
+		String message = "Close " + labelText + "?";
+		Label confirmationLabel = new Label(message);
+		confirmationLabel.setStyle("-fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;");
+
+		Rectangle overlay = generateOverlay();
+
+		Rectangle confirmationBox = new Rectangle(300, 170);
+		confirmationBox.setFill(Color.GREY);
+		confirmationBox.setArcHeight(20);
+		confirmationBox.setArcWidth(20);
+
+		Button okButton = new Button("OK");
+		Button cancelButton = new Button("Cancel");
+		
+		HBox hbox = new HBox();
+		hbox.setAlignment(Pos.CENTER);
+		hbox.setPadding(new Insets(10));
+		hbox.getChildren().addAll(cancelButton, okButton);
+
+		VBox vbox = new VBox();
+		vbox.setAlignment(Pos.CENTER);
+		vbox.setPadding(new Insets(10));
+		vbox.getChildren().addAll(confirmationLabel, hbox);
+
+		StackPane stackPane = new StackPane();
+		stackPane.getChildren().addAll(confirmationBox, vbox);
+		StackPane.setAlignment(stackPane, Pos.CENTER);
+
+		StackPane mainStackPane = new StackPane();
+		mainStackPane.getChildren().addAll(overlay, stackPane);
+		StackPane.setAlignment(mainStackPane, Pos.CENTER);
+
+		Main.getRoot().getChildren().add(mainStackPane);
+		
+		okButton.setOnAction(event -> {
+			transactionWrapper.transaction.endTransaction(LocalTime.now());
+
+			TransactionController.addTransaction(transactionWrapper.transaction);
+			transactionWrapper.transaction = null;
+			
+			rectangle.setFill(Color.GREEN);
+			Main.getRoot().getChildren().remove(mainStackPane);
+			
+			showNotification(labelText + " closed!");
+		});
+		
+		cancelButton.setOnAction(event -> {
+			Main.getRoot().getChildren().remove(mainStackPane);
+		});
+	}
+
+	private static void showStartTransactionConfirmation(String labelText, Rectangle rectangle,
+			TransactionWrapper transactionWrapper) {
+		String message = "Open " + labelText + "?";
 		Label confirmationLabel = new Label(message);
 		confirmationLabel.setStyle("-fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold;");
 
@@ -95,15 +144,16 @@ public class MainController {
 
 		Main.getRoot().getChildren().add(confirmationPane);
 
+		String tableNumber = labelText.replace("Table ", "");
 		okButton.setOnAction(event -> {
 			if (nameTF.getText().length() < 3)
 				return;
 
-			transaction = new Transaction();
-			transaction.startTransaction(nameTF.getText(), tableNumber);
+			transactionWrapper.transaction = new Transaction();
+			transactionWrapper.transaction.startTransaction(nameTF.getText(), tableNumber);
 
 			Main.getRoot().getChildren().remove(confirmationPane);
-			showNotification("Table " + tableNumber + " Opened!");
+			showNotification(labelText + " Opened!");
 			rectangle.setFill(Color.RED);
 		});
 
