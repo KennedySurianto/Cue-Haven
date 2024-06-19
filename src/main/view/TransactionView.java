@@ -43,7 +43,7 @@ public class TransactionView {
 		TableColumn<Transaction, String> endTimeColumn = createColumn("End", "endTime");
 		
 		// Set specific column widths
-		transactionIdColumn.setPrefWidth(100);
+		transactionIdColumn.setPrefWidth(80);
 		transactionDateColumn.setPrefWidth(150);
 		customerNameColumn.setPrefWidth(200);
 		tableNumberColumn.setPrefWidth(100);
@@ -59,6 +59,11 @@ public class TransactionView {
 			transactionTable.getItems().add(new Transaction(t.getTransactionId(), t.getTransactionDate(),
 					t.getCustomerName(), t.getTableNumber(), t.getStartTime(), t.getEndTime()));
 		}
+		
+		// Styling
+		transactionTable.setStyle("-fx-background-color: #f0f0f0; -fx-font-size: 16px;");
+		transactionIdColumn.setStyle("-fx-alignment: CENTER;");
+		customerNameColumn.setStyle("-fx-text-fill: #336699;");
 
 		// Setup view Positioning
 		view.setTop(headingPane);

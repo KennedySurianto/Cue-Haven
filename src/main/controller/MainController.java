@@ -35,7 +35,6 @@ public class MainController {
 		StackPane.setAlignment(label, Pos.CENTER);
 
 		stackPane.setOnMouseEntered(event -> stackPane.setStyle("-fx-cursor: hand;"));
-
 		stackPane.setOnMouseExited(event -> stackPane.setStyle("-fx-cursor: default;"));
 
 		TransactionWrapper transactionWrapper = new TransactionWrapper();

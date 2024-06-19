@@ -56,8 +56,8 @@ public class Main extends Application {
 	private Scene createScene() {
 		BorderPane borderPane = new BorderPane();
 		borderPane.setTop(createMenuBar());
-		
 		borderPane.setCenter(root);
+		
 		return new Scene(borderPane, 1400, 700);
 	}
 	
@@ -65,11 +65,13 @@ public class Main extends Application {
         MenuBar menuBar = new MenuBar();
 
         Menu mainMenu = new Menu("Main");
+        mainMenu.setStyle("-fx-font-size: 16px;");
         MenuItem mainItem = new MenuItem("Go to Main Menu");
         mainItem.setOnAction(event -> showMainMenu());
         mainMenu.getItems().add(mainItem);
 
         Menu transactionMenu = new Menu("Transaction");
+        transactionMenu.setStyle("-fx-font-size: 16px;");
         MenuItem transactionItem = new MenuItem("Go to Transaction Menu");
         transactionItem.setOnAction(event -> showTransactionMenu());
         transactionMenu.getItems().add(transactionItem);
