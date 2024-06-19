@@ -72,7 +72,7 @@ public class TransactionView {
 		tableNumberColumn.setStyle("-fx-alignment: CENTER;");
 		startTimeColumn.setStyle("-fx-alignment: CENTER;");
 		endTimeColumn.setStyle("-fx-alignment: CENTER;");
-		playTimeColumn.setStyle("-fx-alignment: CENTER; -fx-font-weight: bold;");
+		playTimeColumn.setStyle("-fx-alignment: CENTER;");
 
 		// Setup view Positioning
 		view.setTop(headingPane);
