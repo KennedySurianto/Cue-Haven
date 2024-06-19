@@ -60,7 +60,13 @@ public class TransactionController {
 		
 		ArrayList<Transaction> transactionList = new ArrayList<Transaction>();
 		
-		String query = "SELECT * FROM Transactions ORDER BY transaction_id DESC";
+		String query = "SELECT \r\n"
+				+ "	transaction_id, transaction_date, customer_name, \r\n"
+				+ "	table_number, start_time, end_time, \r\n"
+				+ "	end_time - start_time AS play_time, \r\n"
+				+ "	ROUND((EXTRACT(EPOCH FROM (end_time - start_time)) / 3600.0) * 50000, 0) AS charge\r\n"
+				+ "FROM Transactions\r\n"
+				+ "ORDER BY transaction_id DESC;";
 		
 		try {
 			Connection connection = DatabaseConnection.getConnection();
@@ -75,8 +81,10 @@ public class TransactionController {
 				String tableNumber = rs.getString("table_number");
 				LocalTime startTime = rs.getTime("start_time").toLocalTime();
 				LocalTime endTime = rs.getTime("end_time").toLocalTime();
+				LocalTime playTime = rs.getTime("play_time").toLocalTime();
+				Double charge = rs.getDouble("charge");
 				
-				transactionList.add(new Transaction(transactionId, transactionDate, customerName, tableNumber, startTime, endTime));
+				transactionList.add(new Transaction(transactionId, transactionDate, customerName, tableNumber, startTime, endTime, playTime, charge));
 			}
 			
 			connection.close();

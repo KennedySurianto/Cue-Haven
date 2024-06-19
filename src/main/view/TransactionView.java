@@ -41,29 +41,38 @@ public class TransactionView {
 		TableColumn<Transaction, String> tableNumberColumn = createColumn("Table", "tableNumber");
 		TableColumn<Transaction, String> startTimeColumn = createColumn("Start", "startTime");
 		TableColumn<Transaction, String> endTimeColumn = createColumn("End", "endTime");
+		TableColumn<Transaction, String> playTimeColumn = createColumn("Play Time", "playTime");
+		TableColumn<Transaction, String> chargeColumn = createColumn("Charge (Rp)", "charge");
 		
 		// Set specific column widths
-		transactionIdColumn.setPrefWidth(80);
+		transactionIdColumn.setPrefWidth(100);
 		transactionDateColumn.setPrefWidth(150);
 		customerNameColumn.setPrefWidth(200);
 		tableNumberColumn.setPrefWidth(100);
 		startTimeColumn.setPrefWidth(150);
 		endTimeColumn.setPrefWidth(150);
+		playTimeColumn.setPrefWidth(150);
+		chargeColumn.setPrefWidth(200);
 
 		transactionTable.getColumns().addAll(transactionIdColumn, transactionDateColumn, customerNameColumn,
-				tableNumberColumn, startTimeColumn, endTimeColumn);
+				tableNumberColumn, startTimeColumn, endTimeColumn, playTimeColumn, chargeColumn);
 
 		// Insert data into Transaction Table
 		ArrayList<Transaction> transactions = TransactionController.getTransactions();
 		for (Transaction t : transactions) {
 			transactionTable.getItems().add(new Transaction(t.getTransactionId(), t.getTransactionDate(),
-					t.getCustomerName(), t.getTableNumber(), t.getStartTime(), t.getEndTime()));
+					t.getCustomerName(), t.getTableNumber(), t.getStartTime(), t.getEndTime(), t.getPlayTime(), t.getCharge()));
 		}
 		
 		// Styling
 		transactionTable.setStyle("-fx-background-color: #f0f0f0; -fx-font-size: 16px;");
 		transactionIdColumn.setStyle("-fx-alignment: CENTER;");
-		customerNameColumn.setStyle("-fx-text-fill: #336699;");
+		transactionDateColumn.setStyle("-fx-alignment: CENTER;");
+		customerNameColumn.setStyle("-fx-font-weight: bold;");
+		tableNumberColumn.setStyle("-fx-alignment: CENTER;");
+		startTimeColumn.setStyle("-fx-alignment: CENTER;");
+		endTimeColumn.setStyle("-fx-alignment: CENTER;");
+		playTimeColumn.setStyle("-fx-alignment: CENTER; -fx-font-weight: bold;");
 
 		// Setup view Positioning
 		view.setTop(headingPane);

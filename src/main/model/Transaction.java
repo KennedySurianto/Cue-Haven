@@ -11,10 +11,27 @@ public class Transaction {
 	private LocalTime startTime;
 	private LocalTime endTime;
 	
-	public Transaction() {}
+	private LocalTime playTime;
+	private Double charge;
 	
+	public LocalTime getPlayTime() {
+		return playTime;
+	}
+
+	public void setPlayTime(LocalTime playTime) {
+		this.playTime = playTime;
+	}
+
+	public Double getCharge() {
+		return charge;
+	}
+
+	public void setCharge(Double charge) {
+		this.charge = charge;
+	}
+
 	public Transaction(Integer transactionId, LocalDate transactionDate, String customerName, String tableNumber,
-			LocalTime startTime, LocalTime endTime) {
+			LocalTime startTime, LocalTime endTime, LocalTime playTime, Double charge) {
 		super();
 		this.transactionId = transactionId;
 		this.transactionDate = transactionDate;
@@ -22,7 +39,11 @@ public class Transaction {
 		this.tableNumber = tableNumber;
 		this.startTime = startTime;
 		this.endTime = endTime;
+		this.playTime = playTime;
+		this.charge = charge;
 	}
+
+	public Transaction() {}
 
 	public void startTransaction(String customerName, String tableNumber) {
 		this.transactionDate = LocalDate.now();

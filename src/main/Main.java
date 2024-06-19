@@ -64,9 +64,9 @@ public class Main extends Application {
 	private MenuBar createMenuBar() {
         MenuBar menuBar = new MenuBar();
 
-        Menu mainMenu = new Menu("Main");
+        Menu mainMenu = new Menu("Table");
         mainMenu.setStyle("-fx-font-size: 16px;");
-        MenuItem mainItem = new MenuItem("Go to Main Menu");
+        MenuItem mainItem = new MenuItem("Go to Table Menu");
         mainItem.setOnAction(event -> showMainMenu());
         mainMenu.getItems().add(mainItem);
 
